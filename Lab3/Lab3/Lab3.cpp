@@ -63,7 +63,6 @@ int main() {
 				matrix[i][j] = static_cast<int>(rand() * fraction * (MAX_ELEMENT - MIN_ELEMENT + 1) + MIN_ELEMENT);
 				Find_element(matrix, i, j, number_of_lines);
 			}
-			
 		}
 	}
 	cout << endl << endl;
