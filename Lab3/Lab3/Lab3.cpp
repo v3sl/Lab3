@@ -28,11 +28,42 @@ int main() {
 		cout << "Enter number of columns in your matrix." << endl;
 		cin >> number_of_columns;
 	}
+	cout << "Enter 1 if you want to generate random numbers or 0 if you want to enter numbers by yourself" << endl;
+	int ZERO_OR_ONE = 2;
+	cin >> ZERO_OR_ONE;
+	float MIN_ELEMENT = 0;
+	float MAX_ELEMENT = 0;
 	vector<vector<int>> matrix(2 * number_of_lines, vector<int>(number_of_columns));
-	for (int i = 0; i < number_of_lines; i++) {
-		for (int j = 0; j < number_of_columns; j++) {
-			cin >> matrix[i][j];
-			Find_element(matrix, i, j, number_of_lines);
+	while (true) {
+		if (ZERO_OR_ONE != 1 && ZERO_OR_ONE != 0) {
+			cout << "You should enter 1 or 0 to continue" << endl;
+			cin >> ZERO_OR_ONE;
+		}
+		else {
+			break;
+		}
+	}
+	if (ZERO_OR_ONE == 0) {
+		for (int i = 0; i < number_of_lines; i++) {
+			for (int j = 0; j < number_of_columns; j++) {
+				cin >> matrix[i][j];
+				Find_element(matrix, i, j, number_of_lines);
+			}
+		}
+	}
+	else {
+		cout << "Enter maximum border of your array " << endl;
+		cin >> MAX_ELEMENT;
+		cout << "Enter minimum border of your array " << endl;
+		cin >> MIN_ELEMENT;
+		cout << "Your array will consist of elemenst from " << MIN_ELEMENT << " to " << MAX_ELEMENT << " " << endl;
+		for (int i = 0; i < number_of_lines ; i++) {
+			for (int j = 0; j < number_of_columns; j++) {
+				static const float fraction = 1.0 / (static_cast<float>(RAND_MAX) + 1.0);
+				matrix[i][j] = static_cast<int>(rand() * fraction * (MAX_ELEMENT - MIN_ELEMENT + 1) + MIN_ELEMENT);
+				Find_element(matrix, i, j, number_of_lines);
+			}
+			
 		}
 	}
 	cout << endl << endl;
